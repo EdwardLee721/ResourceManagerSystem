@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-cn" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login--Personal Resource Manager</title>
+
+<link href="login/css/bootstrap.min.css" rel="stylesheet">
+<link href="login/css/signin.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class="signin">
+	<div class="signin-head"><img src="login/images/test/head_120.jpg" alt="" class="img-circle"></div>
+	<form class="form-signin" role="form" th:action="@{/login}" method="post">
+		<input type="text" name="userName" class="form-control" placeholder="用户名" required autofocus />
+		<input type="password" name="password" class="form-control" placeholder="密码" required />
+		<button class="btn btn-lg btn-warning btn-block" type="submit">登录</button>
+	</form>
+</div>
+</body>
+</html>

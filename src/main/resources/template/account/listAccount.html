@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>账号管理</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+</head>
+<body style="overflow-y: scroll;">  
+	<div class="layui-btn-group">
+	  <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="add()">
+	    <i class="layui-icon">&#xe654;</i>
+	  </button>
+	  <button class="layui-btn layui-btn-primary layui-btn-sm" >
+	    <i class="layui-icon">&#xe640;</i>
+	  </button>
+	</div>
+	<table class="layui-hide" id="grid" ></table> 
+	<script type="text/html" id="barDemo">
+ 	 	 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+ 		 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	</script>               
+	<script src="layui/layui.all.js" charset="utf-8"></script>
+	<script src="asset/js/jquery.min.js" charset="utf-8"></script>
+	<script>
+		var lay_table = layui.table;
+		var layer = layui.layer;
+		var tableIns = lay_table.render({
+			elem:"#grid",
+		 	id:"grid",
+		 	url:"/queryAccounts",
+		 	cols:[
+		 			[
+		 				{type:'checkbox'},
+				 		{field:'appName', sort: true, title:"应用名称"},
+				 		{field:'loginName',sort: true,title:"登录名"},
+				 		{field:'loginPwd',title:"密码"},
+				 		{fixed: 'right', align:'center', toolbar: '#barDemo'}
+	 				]
+		 		]
+		}); 
+		function add(){
+			layer.open({
+				  type: 2,
+				  title: '新增账号信息',
+				  shadeClose: true,
+				  shade: 0.3,
+				  area: ['400px', '70%'],
+				  content: '/toAdd'
+				}); 
+		}
+		function deleteAccount(){
+			layer.confirm('真的删除行么', function(index){
+				  var checkStatus = table.checkStatus('gird'); //test即为基础参数id对应的值
+				  console.log(checkStatus.data) //获取选中行的数据
+			      layer.close(index);
+			      //向服务端发送删除指令
+			 });
+		} 
+		function closeLayer(){
+			layer.closeAll();
+			layui.use('table', function(){
+				  var table = layui.table;
+				  tableIns.reload();
+			});
+		}
+		
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+@CHARSET "UTF-8";
+
+body {
+	text-align: center;
+	background-image: url(../images/bac.jpg);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	min-width: 1000px;
+	z-index: -10;
+	zoom: 1;
+	background-color: #fff;
+	background-repeat: no-repeat;
+	background-size: cover;
+	-webkit-background-size: cover;
+	-o-background-size: cover;
+	background-position: center 0;
+	font-family: "微软雅黑"
+}
+
+.layui-form {
+	position:fixed;
+	left:50%;
+	top:30%;
+	width:400px;
+	height: 200px; 
+	border: 5px groove #276ff1;
+    background-color: #000407;
+    opacity: 0.5;
+    border-radius: 16px!important;
+}
+.form_item1{
+    margin-top: 10%;
+}
+.form_item1,.form_item2,.form_item3{
+    margin-left: -9%;
+}
+.m_label{
+	color: white;
+	font-size: 16px;
+}
+.form_item3 .layui-btn{
+	font-size:16px;
+	width: 190px;
+}

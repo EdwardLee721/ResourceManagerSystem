@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <title>Account List</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+  <!-- start: Css -->
+  <link rel="stylesheet" type="text/css" href="asset/css/bootstrap.min.css">
+
+  <!-- plugins -->
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/font-awesome.min.css"/>
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/datatables.bootstrap.min.css"/>
+  <link rel="stylesheet" type="text/css" href="asset/css/plugins/animate.min.css"/>
+  <link href="asset/css/style.css" rel="stylesheet">
+  <!-- end: Css -->
+</head>
+<body>  
+ 
+ <!--  <div class="layui-btn-group">
+    <button class="layui-btn layui-btn-primary layui-btn-sm">文字</button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+    <button class="layui-btn layui-btn-primary layui-btn-sm"><i class="layui-icon"></i></button>
+  </div> -->
+ 
+<!-- <table class="layui-table" id="accounts" lay-filter="demo">
+  <thead>
+    <tr>
+      <th lay-data="{type:'checkbox', fixed: 'left'}"></th>
+      <th lay-data="{field:'appName', width:80, sort: true, fixed: true}">应用名称</th>
+      <th lay-data="{field:'loginName', width:80}">用户名</th>
+      <th lay-data="{field:'password', width:80, sort: true}">密码</th>
+      <th lay-data="{fixed: 'right', width:178, align:'center', toolbar: '#barDemo'}"></th>
+    </tr>
+  </thead>
+</table> -->
+ <table class="table table-striped table-bordered" id="accounts_datatables" >
+        <thead>
+        <tr>
+            <th>应用名称</th>
+            <th>用户名</th>
+            <th>密码</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="account : ${accounts}">
+            <th scope="row" th:text="${account.appName}">知乎</th>
+            <td th:text="${account.loginName}">13257003450</td>
+            <td th:text="${account.loginPwd}">123456</td>
+        </tr>
+        </tbody>
+    </table>
+<script type="text/html" id="barDemo">
+  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+               
+<!-- start: Javascript -->
+<script src="asset/js/jquery.min.js"></script>
+<script src="asset/js/jquery.ui.min.js"></script>
+<script src="asset/js/bootstrap.min.js"></script>
+
+
+
+<!-- plugins -->
+<script src="asset/js/plugins/moment.min.js"></script>
+<script src="asset/js/plugins/jquery.datatables.min.js"></script>
+<script src="asset/js/plugins/datatables.bootstrap.min.js"></script>
+<script src="asset/js/plugins/jquery.nicescroll.js"></script>
+
+          
+<script src="layui/layui.js" charset="utf-8"></script>
+<script>
+	$(document).ready(function(){
+	    $('#accounts_datatables').DataTable( {
+	        "paging": true,
+	        "searching": true,
+	        "ordering":  true,
+	        "language": {
+                "lengthMenu": "每页 _MENU_ 条记录",
+                "zeroRecords": "没有找到记录",
+                "info": "第 _PAGE_ 页 ( 总共 _PAGES_ 页 )",
+                "infoEmpty": "无记录",
+                "infoFiltered": "(从 _MAX_ 条记录过滤)"
+            }
+	    });
+	});
+</script>
+
+</body>
+</html>
