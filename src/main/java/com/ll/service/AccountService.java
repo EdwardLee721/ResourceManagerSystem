@@ -15,4 +15,6 @@ public interface AccountService {
 	public void editAccount(Account account);
 	//删除账户信息
 	public void deleteById(long id);
+	//批量删除账户信息
+	public void deleteAccounts(List<Account> accounts);
 }

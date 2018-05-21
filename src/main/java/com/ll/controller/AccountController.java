@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -41,14 +42,24 @@ public class AccountController {
 	}
 	@RequestMapping("/add")
 	@ResponseBody
-	public boolean add(Account account){
+	public boolean add(@RequestBody Account account){
 		try{
 			accountService.addAccount(account);
 		}catch(Exception e){
 			e.printStackTrace();
 			return false;
 		}
-		
+		return true;
+	}
+	@RequestMapping("/delete")
+	@ResponseBody
+	public boolean deleteAccounts(@RequestBody List<Account> accounts){
+		try{
+			accountService.deleteAccounts(accounts);
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
 		return true;
 	}
 }

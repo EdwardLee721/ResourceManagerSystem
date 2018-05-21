@@ -13,11 +13,11 @@
 	  <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="add()">
 	    <i class="layui-icon">&#xe654;</i>
 	  </button>
-	  <button class="layui-btn layui-btn-primary layui-btn-sm" >
+	  <button class="layui-btn layui-btn-primary layui-btn-sm" onclick="deleteAccount()">
 	    <i class="layui-icon">&#xe640;</i>
 	  </button>
 	</div>
-	<table class="layui-hide" id="grid" ></table> 
+	<table class="layui-table" id="grid" ></table> 
 	<script type="text/html" id="barDemo">
  	 	 <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
  		 <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -52,19 +52,43 @@
 				}); 
 		}
 		function deleteAccount(){
-			layer.confirm('真的删除行么', function(index){
-				  var checkStatus = table.checkStatus('gird'); //test即为基础参数id对应的值
-				  console.log(checkStatus.data) //获取选中行的数据
-			      layer.close(index);
-			      //向服务端发送删除指令
+			layer.confirm('确定要删除吗？', function(index){
+				  layer.close(index);
+				  var checkStatus = lay_table.checkStatus('grid'); //grid即为基础参数id对应的值
+				  var accounts = checkStatus.data;//获取选中行的数据
+			      if(accounts.length<=0){
+			    	  layer.alert("请先选择数据！");
+			    	  return;
+			      }
+			      $.ajax({
+			    	  url:"/delete",
+			    	  dataType: 'json',
+			    	  type: 'POST',
+			    	  // headers必须添加，否则会报415错误
+			    	  headers: {
+			    	      'Accept': 'application/json',
+			    	      'Content-Type': 'application/json'
+			    	  },
+			    	  data:JSON.stringify(accounts),
+			    	  success:function(data){
+			    		  if(data==true){
+			    			  layer.msg("删除成功！",{icon: 1});
+				    		  tableIns.reload();
+			    		  }else{
+			    			  layer.msg("删除成功！",{icon: 2});
+			    		  }
+			    		  
+			    	  },
+			    	  error:function(){
+			    		  layer.msg("删除成功！",{icon:2});
+			    	  }
+			      });
 			 });
 		} 
 		function closeLayer(){
 			layer.closeAll();
-			layui.use('table', function(){
-				  var table = layui.table;
-				  tableIns.reload();
-			});
+			tableIns.reload();
+			layer.msg("增加成功！",{icon: 1});
 		}
 		
 	</script>

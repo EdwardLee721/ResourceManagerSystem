@@ -34,5 +34,9 @@ public class AccountServiceImpl implements AccountService{
 	public void editAccount(Account account) {
 		accountDao.save(account);
 	}
+	@Override
+	public void deleteAccounts(List<Account> accounts) {
+		accountDao.deleteInBatch(accounts);
+	}
 
 }

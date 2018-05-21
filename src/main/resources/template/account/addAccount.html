@@ -6,22 +6,22 @@
 <link rel="stylesheet" href="/layui/css/layui.css"  media="all">
 </head>
 <body style="width: 100%;">
-	<form class="layui-form" action="/add">
+	<form class="layui-form" style="padding-top: 10px;">
 		<div class="layui-form-item">
 			<label class="layui-form-label">应用名称</label>
-			<div class="layui-input-block">
+			<div class="layui-input-inline">
 				<input type="text" name="appName" lay-verify="required" autocomplete="off" placeholder="请输入应用名称" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">登录名</label>
-			<div class="layui-input-block">
+			<div class="layui-input-inline">
 				<input type="text" name="loginName" lay-verify="required" placeholder="请输入登录名" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
 			<label class="layui-form-label">密码</label>
-			<div class="layui-input-block">
+			<div class="layui-input-inline">
 				<input type="text" name="loginPwd" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
 			</div>
 		</div>
@@ -33,11 +33,31 @@
 		</div>
 	</form>
 	<script src="layui/layui.js" charset="utf-8"></script>
+	<script src="asset/js/jquery.min.js" charset="utf-8"></script>
 	<script type="text/javascript">
-		layui.use(['form'], function(){
+		layui.use(['form','layer'], function(){
 			var form = layui.form;
+			var layer = layui.layer;
 			form.on('submit(submitForm)', function(data){
-				parent.closeLayer();
+				var account = data.field;
+				$.ajax({
+					  url:"/add",
+			    	  dataType: 'json',
+			    	  type: 'POST',
+			    	  // headers必须添加，否则会报415错误
+			    	  headers: {
+			    	      'Accept': 'application/json',
+			    	      'Content-Type': 'application/json'
+			    	  },
+			    	  data:JSON.stringify(account),
+			    	  success:function(data){
+			    		  parent.closeLayer();
+			    	  },
+			    	  error:function(){
+			    		  
+			    	  }
+				});
+				return false;
 			  });
 		});
 			  
