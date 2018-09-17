@@ -14,3 +14,13 @@
     font-size: 20px;
     font-family:Microsoft YaHei
 }
+#content{
+    background-color: #e8e8e8;
+    overflow: hidden;
+}
+#c_container{
+    width: 98%;
+    height: 98%;
+    margin-left: 1%;
+    margin-top: 1%;
+}

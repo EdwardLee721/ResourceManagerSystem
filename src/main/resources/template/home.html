@@ -15,7 +15,7 @@
       <li class="layui-nav-item">
         <a href="javascript:;">
           <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-          贤心
+          肥肥也要吃饭
         </a>
         <dl class="layui-nav-child">
           <dd><a href="">基本资料</a></dd>
@@ -33,8 +33,8 @@
         <li class="layui-nav-item layui-nav-itemed">
           <a class="" href="javascript:;">功能菜单</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;" onclick="setContent('账号管理--记录应用及登录信息','/toListAccount')">账号管理</a></dd>
-            <dd><a href="javascript:;" onclick="setContent('知识库管理--记录知识库内容简介及链接','')">知识库管理</a></dd>
+            <dd onclick="setContent('账号管理--记录应用及登录信息','/toListAccount')"><a href="javascript:;" >账号管理</a></dd>
+            <dd onclick="setContent('知识库管理--记录知识库内容简介及链接','')"><a href="javascript:;">知识库管理</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
@@ -47,12 +47,12 @@
     </div>
   </div>
 
-  <div class="layui-body" >
+  <div class="layui-body" id="content">
     <!-- 内容主体区域 -->
-    <div class="layui-card">
+    <div class="layui-card" id="c_container">
       <div class="layui-card-header font-18" id="c_title"></div>
-      <div class="layui-card-body">
-        <iframe width="100%" style="border: none;min-height: 400px;" scrolling="no" id="c_content"></iframe>
+      <div class="layui-card-body" style="height: calc(100% - 43px);">
+        <iframe width="100%" style="border: none;height: 100%;" id="c_content"></iframe>
       </div>
     </div>
 
@@ -76,7 +76,7 @@
     $("#c_content").attr("src",url);
   }
   $(function () {
-    setContent("账号管理--记录应用及登录信息","/toListAccount");
+    $(".layui-nav-tree li:first-child dd:first-child").trigger("click");
   });
 </script>
 </body>
