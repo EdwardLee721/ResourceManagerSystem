@@ -27,4 +27,9 @@ public class UserController {
 	public String toIndex(){
 		return "index";
 	}
+
+	@RequestMapping("/home")
+	public String toHome(){
+		return "home";
+	}
 }
